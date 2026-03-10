@@ -210,6 +210,62 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Exclusive Eid Deals Section */}
+      <section className="py-24 bg-midnight border-y border-white/5 relative">
+        {/* Subtle background glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-full bg-gold/5 blur-[120px] rounded-full pointer-events-none"></div>
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <AnimatedSection className="text-center mb-16">
+            <span className="text-gold font-bold tracking-widest uppercase text-sm mb-4 block">Festive Specials</span>
+            <h2 className="text-4xl md:text-5xl font-serif text-white mb-6">Exclusive Eid Deals</h2>
+            <p className="text-ash max-w-2xl mx-auto">Celebrate the festivities with our limited-time premium grooming and beauty offers.</p>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+            {/* Men's Deal Flyer */}
+            <AnimatedSection delay={0.2} className="relative group rounded-2xl overflow-hidden border border-white/10 hover:border-gold/50 transition-all shadow-2xl bg-charcoal">
+              <Link to="/book?category=Men" className="block w-full h-full">
+                <img 
+                  src="/eid-deal-men.png" // Replace with your actual image path
+                  alt="Men's Eid Deal" 
+                  className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+                {/* Dark overlay that fades on hover */}
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"></div>
+                
+                {/* Hover Button */}
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                   <span className="bg-gold text-charcoal px-8 py-3 rounded-full font-bold uppercase tracking-wider text-sm shadow-[0_0_20px_rgba(200,163,95,0.4)] whitespace-nowrap">
+                     Book Men's Deal
+                   </span>
+                </div>
+              </Link>
+            </AnimatedSection>
+
+            {/* Women's Deal Flyer */}
+            <AnimatedSection delay={0.4} className="relative group rounded-2xl overflow-hidden border border-white/10 hover:border-gold/50 transition-all shadow-2xl bg-charcoal">
+              <Link to="/book?category=Women" className="block w-full h-full">
+                <img 
+                  src="/eid-deal-women.png" // Replace with your actual image path
+                  alt="Women's Eid Deal" 
+                  className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+                {/* Dark overlay that fades on hover */}
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"></div>
+                
+                {/* Hover Button */}
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                   <span className="bg-gold text-charcoal px-8 py-3 rounded-full font-bold uppercase tracking-wider text-sm shadow-[0_0_20px_rgba(200,163,95,0.4)] whitespace-nowrap">
+                     Book Women's Deal
+                   </span>
+                </div>
+              </Link>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
       {/* Signature Packages Section */}
       <section className="py-24 bg-charcoal relative">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-midnight/50 to-transparent pointer-events-none"></div>
