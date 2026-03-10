@@ -210,10 +210,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Exclusive Eid Deals Section */}
-      <section className="py-24 bg-midnight border-y border-white/5 relative">
+{/* Exclusive Eid Deals Section */}
+      <section className="py-24 bg-midnight border-y border-white/5 relative overflow-hidden">
         {/* Subtle background glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-full bg-gold/5 blur-[120px] rounded-full pointer-events-none"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[800px] bg-gold/5 blur-[120px] rounded-full pointer-events-none"></div>
         
         <div className="container mx-auto px-6 relative z-10">
           <AnimatedSection className="text-center mb-16">
@@ -222,47 +222,68 @@ const Home = () => {
             <p className="text-ash max-w-2xl mx-auto">Celebrate the festivities with our limited-time premium grooming and beauty offers.</p>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
-            {/* Men's Deal Flyer */}
-            <AnimatedSection delay={0.2} className="relative group rounded-2xl overflow-hidden border border-white/10 hover:border-gold/50 transition-all shadow-2xl bg-charcoal">
-              <Link to="/book?category=Men" className="block w-full h-full">
-                <img 
-                  src="/eid-deal-men.png" // Replace with your actual image path
-                  alt="Men's Eid Deal" 
-                  className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-[1.03]"
-                />
-                {/* Dark overlay that fades on hover */}
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"></div>
-                
-                {/* Hover Button */}
-                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                   <span className="bg-gold text-charcoal px-8 py-3 rounded-full font-bold uppercase tracking-wider text-sm shadow-[0_0_20px_rgba(200,163,95,0.4)] whitespace-nowrap">
-                     Book Men's Deal
-                   </span>
-                </div>
-              </Link>
-            </AnimatedSection>
-
-            {/* Women's Deal Flyer */}
-            <AnimatedSection delay={0.4} className="relative group rounded-2xl overflow-hidden border border-white/10 hover:border-gold/50 transition-all shadow-2xl bg-charcoal">
-              <Link to="/book?category=Women" className="block w-full h-full">
-                <img 
-                  src="/eid-deal-women.png" // Replace with your actual image path
-                  alt="Women's Eid Deal" 
-                  className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-[1.03]"
-                />
-                {/* Dark overlay that fades on hover */}
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"></div>
-                
-                {/* Hover Button */}
-                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                   <span className="bg-gold text-charcoal px-8 py-3 rounded-full font-bold uppercase tracking-wider text-sm shadow-[0_0_20px_rgba(200,163,95,0.4)] whitespace-nowrap">
-                     Book Women's Deal
-                   </span>
-                </div>
-              </Link>
-            </AnimatedSection>
+          {/* MEN'S DEALS GRID (8 Images) */}
+          <div className="mb-16">
+            <h3 className="text-3xl font-serif text-gold mb-8 text-center border-b border-white/10 pb-4 inline-block mx-auto flex justify-center max-w-xs">Men's Deals</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
+              {Array.from({ length: 8 }).map((_, index) => (
+                <AnimatedSection 
+                  key={`men-${index}`} 
+                  delay={0.1 * (index % 4)} 
+                  className="relative group rounded-2xl overflow-hidden border border-white/10 hover:border-gold/50 transition-all shadow-2xl bg-charcoal aspect-[4/5]"
+                >
+                  <Link to="/book?category=Men" className="block w-full h-full">
+                    <img 
+                      src={`/eid-deal-men-${index + 1}.png`} 
+                      alt={`Men's Eid Deal ${index + 1}`} 
+                      className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-[1.03]"
+                    />
+                    {/* Dark overlay that fades on hover */}
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/0 transition-colors duration-500"></div>
+                    
+                    {/* Hover Button */}
+                    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                      <span className="bg-gold text-charcoal px-6 py-3 rounded-full font-bold uppercase tracking-wider text-xs shadow-[0_0_20px_rgba(200,163,95,0.4)] whitespace-nowrap">
+                        Book Men's Deal
+                      </span>
+                    </div>
+                  </Link>
+                </AnimatedSection>
+              ))}
+            </div>
           </div>
+
+          {/* WOMEN'S DEALS GRID (9 Images) */}
+          <div>
+            <h3 className="text-3xl font-serif text-gold mb-8 text-center border-b border-white/10 pb-4 inline-block mx-auto flex justify-center max-w-xs">Women's Deals</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
+              {Array.from({ length: 9 }).map((_, index) => (
+                <AnimatedSection 
+                  key={`women-${index}`} 
+                  delay={0.1 * (index % 4)} 
+                  className="relative group rounded-2xl overflow-hidden border border-white/10 hover:border-gold/50 transition-all shadow-2xl bg-charcoal aspect-[4/5]"
+                >
+                  <Link to="/book?category=Women" className="block w-full h-full">
+                    <img 
+                      src={`/eid-deal-women-${index + 1}.png`} 
+                      alt={`Women's Eid Deal ${index + 1}`} 
+                      className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-[1.03]"
+                    />
+                    {/* Dark overlay that fades on hover */}
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/0 transition-colors duration-500"></div>
+                    
+                    {/* Hover Button */}
+                    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                      <span className="bg-gold text-charcoal px-6 py-3 rounded-full font-bold uppercase tracking-wider text-xs shadow-[0_0_20px_rgba(200,163,95,0.4)] whitespace-nowrap">
+                        Book Women's Deal
+                      </span>
+                    </div>
+                  </Link>
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+
         </div>
       </section>
 
