@@ -70,6 +70,30 @@ const Booking = () => {
       ? [...WOMEN_HAIR_DEALS, ...WOMEN_FACE_DEALS] 
       : [];
 
+  // --- NEW EID DEALS LOGIC ---
+  const eidDeals = formData.serviceCategory === 'Men'
+    ? Array.from({ length: 8 }).map((_, i) => ({
+        id: `eid_m_${i+1}`,
+        category: 'Men' as const,
+        subcategory: 'Eid Deal',
+        title: `Men's Eid Deal ${i + 1}`,
+        description: 'See flyer for details',
+        price: 'Festive Price',
+        duration: '60 mins'
+    }))
+    : formData.serviceCategory === 'Women'
+    ? Array.from({ length: 9 }).map((_, i) => ({
+        id: `eid_w_${i+1}`,
+        category: 'Women' as const,
+        subcategory: 'Eid Deal',
+        title: `Women's Eid Deal ${i + 1}`,
+        description: 'See flyer for details',
+        price: 'Festive Price',
+        duration: '90 mins'
+    }))
+    : [];
+  // ----------------------------
+
   // Adapt packages to Service-like structure
   const packages = PACKAGES.filter(p => p.category === formData.serviceCategory).map(p => ({
     id: p.id,
@@ -81,7 +105,8 @@ const Booking = () => {
     duration: '120 mins' // Default duration assumption for packages
   }));
 
-  const allOptions: (Service | typeof packages[0])[] = [...packages, ...deals, ...regularServices];
+  // Include eidDeals in allOptions for duration calculation
+  const allOptions: (Service | typeof packages[0] | typeof eidDeals[0])[] = [...packages, ...eidDeals, ...deals, ...regularServices];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -288,6 +313,18 @@ const Booking = () => {
               <label className="text-sm text-gold uppercase font-bold tracking-wider">Select Services / Packages *</label>
               <div className="w-full bg-charcoal border border-white/10 rounded-lg p-4 text-white max-h-96 overflow-y-auto custom-scrollbar">
                 
+                {/* EID DEALS SECTION */}
+                {eidDeals.length > 0 && (
+                  <div className="mb-6">
+                    <h3 className="text-gold text-xs font-bold uppercase tracking-wider mb-3 sticky top-0 bg-charcoal/95 backdrop-blur-sm z-10 py-2 border-b border-white/5">
+                      🌙 Festive Eid Deals
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {eidDeals.map(renderServiceItem)}
+                    </div>
+                  </div>
+                )}
+
                 {/* Packages Section */}
                 {packages.length > 0 && (
                   <div className="mb-6">
@@ -324,7 +361,7 @@ const Booking = () => {
                   </div>
                 )}
                 
-                {regularServices.length === 0 && packages.length === 0 && deals.length === 0 && (
+                {regularServices.length === 0 && packages.length === 0 && deals.length === 0 && eidDeals.length === 0 && (
                   <div className="text-center py-8 text-gray-500 italic">
                     No services found for this category.
                   </div>
